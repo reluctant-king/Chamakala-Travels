@@ -22,7 +22,7 @@ const Navbar = () => {
             <Link to="/" className="flex items-center gap-2">
               <Plane className="h-8 w-8 text-brand-gold" />
               <span className="text-2xl font-bold text-white tracking-wide">
-                Chamakala <span className="text-brand-gold">Travels</span>
+                Chamakkala <span className="text-brand-gold">Travels</span>
               </span>
             </Link>
           </div>

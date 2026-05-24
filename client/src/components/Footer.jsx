@@ -8,7 +8,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <h3 className="text-2xl font-bold text-white tracking-wide">
-              Chamakala <span className="text-brand-gold">Travels</span>
+              Chamakkala <span className="text-brand-gold">Travels</span>
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               Your trusted partner in exploring the world. We offer customized travel packages, best flight fares, and seamless booking experiences.
@@ -35,7 +35,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-gray-400 text-sm">
                 <MapPin className="h-5 w-5 text-brand-gold flex-shrink-0" />
-                <span>123 Travel Street, Ernakulam, Kerala 682001, India</span>
+                <span>Ettumanoor - Neendoor Rd, Neendoor, Kerala 686601</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm">
                 <Phone className="h-5 w-5 text-brand-gold flex-shrink-0" />
@@ -43,7 +43,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm">
                 <Mail className="h-5 w-5 text-brand-gold flex-shrink-0" />
-                <span>info@chamakalatravels.com</span>
+                <span>chamakkalatravels@gmail.com</span>
               </li>
             </ul>
           </div>
