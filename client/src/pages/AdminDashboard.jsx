@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, LayoutDashboard, Ticket, MessageSquare, Settings, ShieldCheck, Mail, Lock } from 'lucide-react';
+import { LogOut, LayoutDashboard, Ticket, MessageSquare, Settings, ShieldCheck, Mail, Lock, BarChart2 } from 'lucide-react';
 
 const AdminDashboard = () => {
-  const [activeTab, setActiveTab] = useState('inquiries');
+  const [activeTab, setActiveTab] = useState('analytics');
   const [inquiries, setInquiries] = useState([]);
   const [fares, setFares] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,23 +21,47 @@ const AdminDashboard = () => {
   }, [activeTab]);
 
   const fetchData = async () => {
+    // Guard: require valid admin token
+    if (!adminInfo?.token) {
+      setLoading(false);
+      // Not logged in – redirect to login
+      navigate('/login');
+      return;
+    }
+
     if (activeTab === 'settings') {
       setLoading(false);
       return;
     }
+
     setLoading(true);
     try {
       const endpoint = activeTab === 'inquiries' ? '/api/inquiries' : '/api/fares';
       const res = await fetch(`http://localhost:5000${endpoint}`, {
         headers: {
-          Authorization: `Bearer ${adminInfo.token}`
-        }
+          Authorization: `Bearer ${adminInfo.token}`,
+          'Content-Type': 'application/json',
+        },
       });
+      if (res.status === 401) {
+        // Token invalid or expired – force re‑login
+        localStorage.removeItem('adminInfo');
+        navigate('/login');
+        return;
+      }
       const data = await res.json();
-      if (activeTab === 'inquiries') setInquiries(data);
-      else setFares(data);
+      if (res.ok) {
+        if (activeTab === 'inquiries') setInquiries(Array.isArray(data) ? data : []);
+        else setFares(Array.isArray(data) ? data : []);
+      } else {
+        // Non‑200 response – show empty list
+        if (activeTab === 'inquiries') setInquiries([]);
+        else setFares([]);
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
+      if (activeTab === 'inquiries') setInquiries([]);
+      else setFares([]);
     }
     setLoading(false);
   };
@@ -147,12 +171,14 @@ const AdminDashboard = () => {
           >
             <Ticket className="h-5 w-5" /> Fares
           </button>
+  
           <button 
-            onClick={() => setActiveTab('settings')}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'settings' ? 'bg-brand-blue text-white' : 'text-gray-400 hover:bg-white/5'}`}
+            onClick={() => setActiveTab('analytics')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${activeTab === 'analytics' ? 'bg-brand-blue text-white' : 'text-gray-400 hover:bg-white/5'}`}
           >
-            <Settings className="h-5 w-5" /> Account Settings
+            <BarChart2 className="h-5 w-5" /> Analytics
           </button>
+
         </nav>
         <div className="p-4 border-t border-white/10">
           <button 
@@ -212,6 +238,60 @@ const AdminDashboard = () => {
                   )}
                 </tbody>
               </table>
+                ) : activeTab === 'analytics' ? (
+                  <div className="p-6 bg-gradient-to-r from-brand-dark to-brand-blue rounded-xl shadow-lg backdrop-blur-sm">
+                    <h2 className="text-2xl font-bold mb-4 text-brand-gold">Contact Statistics</h2>
+                    <p className="mb-4 text-gray-200">Total contacts: {inquiries.length}</p>
+                    {/* Summary Cards */}
+                    <div className="grid gap-4 md:grid-cols-2 mb-4">
+                      <div className="bg-white/10 p-4 rounded-xl text-center">
+                        <h3 className="text-brand-gold font-semibold mb-2">Total Contacts</h3>
+                        <p className="text-2xl font-bold text-white">{inquiries.length}</p>
+                      </div>
+                      <div className="bg-white/10 p-4 rounded-xl text-center">
+                        <h3 className="text-brand-gold font-semibold mb-2">Top Travel Type</h3>
+                        <p className="text-xl font-medium text-white">{(() => {
+                          const typeCounts = inquiries.reduce((acc, cur) => { acc[cur.travel_type] = (acc[cur.travel_type] || 0) + 1; return acc; }, {});
+                          return Object.entries(typeCounts).reduce((a, b) => (b[1] > a[1] ? b : a), ['None', 0])[0];
+                        })()}</p>
+                      </div>
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2 text-brand-gold">Travel Type Breakdown</h3>
+                    <div className="grid gap-4 md:grid-cols-2">
+                      {(() => {
+                        const typeCounts = inquiries.reduce((acc, cur) => {
+                          acc[cur.travel_type] = (acc[cur.travel_type] || 0) + 1;
+                          return acc;
+                        }, {});
+                        const maxCount = Math.max(...Object.values(typeCounts), 0);
+                        const mostCommon = Object.entries(typeCounts).reduce((a, b) => (b[1] > a[1] ? b : a), ['', 0])[0];
+                        return (
+                          <>
+                            {Object.entries(typeCounts).map(([type, count]) => {
+                              const percent = maxCount ? Math.round((count / maxCount) * 100) : 0;
+                              return (
+                                <div key={type} className="bg-white/5 p-4 rounded-xl shadow transition-transform transform hover:scale-105">
+                                  <div className="flex justify-between items-center mb-2">
+                                    <span className="text-sm font-medium text-gray-200">{type}</span>
+                                    <span className="text-sm font-medium text-gray-200">{count}</span>
+                                  </div>
+                                  <div className="w-full bg-white/10 h-4 rounded">
+                                    <div className="bg-brand-gold h-4 rounded" style={{ width: `${(count / maxCount) * 100}%` }} />
+                                  </div>
+                                  <p className="mt-1 text-xs text-gray-400 text-center">{percent}% of max</p>
+                                </div>
+                              );
+                            })}
+                            {mostCommon && (
+                              <p className="col-span-2 text-center text-gray-300 mt-4">
+                                Most popular travel type: <span className="font-medium text-brand-gold">{mostCommon}</span>
+                              </p>
+                            )}
+                          </>
+                        );
+                      })()}
+                    </div>
+                  </div>
             ) : activeTab === 'fares' ? (
               <div className="p-6">
                 <div className="mb-8 bg-white/5 border border-white/10 rounded-xl p-6">

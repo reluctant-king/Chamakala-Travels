@@ -1,0 +1,11 @@
+services:
+  - type: static
+    name: Chamakala-Travels
+    env: node
+    buildCommand: npm run build
+    publishPath: client/dist
+    rootDir: client
+    # Environment variables for the frontend (VITE_ prefixed only)
+    envVars:
+      - key: VITE_API_URL
+        value: "${VITE_API_URL}" # replace with your backend URL
