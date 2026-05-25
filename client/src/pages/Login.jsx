@@ -90,6 +90,9 @@ const Login = () => {
             Sign In
           </button>
         </form>
+        <div className="mt-4 text-center">
+          <a href="/forgot" className="text-sm text-gray-300 hover:underline">Forgot password?</a>
+        </div>
       </motion.div>
     </div>
   );
