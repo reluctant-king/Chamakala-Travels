@@ -1,47 +1,80 @@
 import { motion } from 'framer-motion';
 
 const destinations = [
-  { id: 1, name: 'Dubai', price: 'From ₹15,000', duration: '4 Days / 3 Nights', image: 'https://images.unsplash.com/photo-1512453979436-5a5338d35fa6?q=80&w=1000&auto=format&fit=crop' },
-  { id: 2, name: 'Singapore', price: 'From ₹25,000', duration: '5 Days / 4 Nights', image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=1000&auto=format&fit=crop' },
-  { id: 3, name: 'Goa', price: 'From ₹8,000', duration: '3 Days / 2 Nights', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e4f2?q=80&w=1000&auto=format&fit=crop' },
-  { id: 4, name: 'Bali', price: 'From ₹35,000', duration: '6 Days / 5 Nights', image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1000&auto=format&fit=crop' },
+  {
+    id: 1,
+    name: 'Dubai',
+    country: 'UAE',
+    price: 'From ₹8,499',
+    img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
+    featured: true,
+  },
+  {
+    id: 2,
+    name: 'Singapore',
+    country: 'Singapore',
+    price: 'From ₹12,999',
+    img: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=80',
+  },
+  {
+    id: 3,
+    name: 'Goa',
+    country: 'India',
+    price: 'From ₹2,499',
+    img: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80',
+  },
+  {
+    id: 4,
+    name: 'Munnar',
+    country: 'Kerala, India',
+    price: 'From ₹1,299',
+    img: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80',
+  },
+  {
+    id: 5,
+    name: 'Riyadh',
+    country: 'Saudi Arabia',
+    price: 'From ₹9,750',
+    img: 'https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?w=600&q=80',
+  },
 ];
 
 const DestinationCards = () => {
   return (
-    <section className="py-20 bg-brand-dark/95">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Popular <span className="text-brand-green">Destinations</span></h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">Explore our most booked packages and breathtaking locations tailored for your perfect getaway.</p>
-        </div>
+    <section className="py-16">
+      <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="group relative overflow-hidden rounded-[2rem] bg-cover bg-center"
+          style={{ backgroundImage: `url('${destinations[0].img}')` }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+          <div className="absolute inset-x-0 bottom-0 p-10 text-white">
+            <p className="text-sm uppercase tracking-[0.2em] text-brand-gold">{destinations[0].country}</p>
+            <h3 className="mt-3 text-4xl font-semibold">{destinations[0].name}</h3>
+            <p className="mt-3 text-sm text-gray-200">{destinations[0].price}</p>
+          </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {destinations.map((dest, index) => (
+        <div className="grid gap-6 sm:grid-cols-2">
+          {destinations.slice(1).map((dest, index) => (
             <motion.div
               key={dest.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative group rounded-3xl overflow-hidden cursor-pointer h-96"
+              className="group relative overflow-hidden rounded-[2rem] h-80 bg-cover bg-center"
+              style={{ backgroundImage: `url('${dest.img}')` }}
             >
-              <img 
-                src={dest.image} 
-                alt={dest.name} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-              
-              <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="text-2xl font-bold text-white mb-1">{dest.name}</h3>
-                <p className="text-gray-300 text-sm mb-4">{dest.duration}</p>
-                <div className="flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                  <span className="text-brand-gold font-semibold">{dest.price}</span>
-                  <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium transition-colors">
-                    Inquire
-                  </button>
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <p className="text-xs uppercase tracking-[0.2em] text-brand-gold">{dest.country}</p>
+                <h3 className="mt-3 text-2xl font-semibold">{dest.name}</h3>
+                <p className="mt-2 text-sm text-gray-200 opacity-0 transition group-hover:opacity-100">{dest.price} · Book Now →</p>
               </div>
             </motion.div>
           ))}

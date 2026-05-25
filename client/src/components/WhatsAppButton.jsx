@@ -4,18 +4,18 @@ import { motion } from 'framer-motion';
 const WhatsAppButton = () => {
   return (
     <motion.a
-      href="https://wa.me/919876543210" // Replace with real number
+      href="https://wa.me/919495684965"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-colors group"
+      className="fixed bottom-6 right-6 z-50 inline-flex items-center justify-center rounded-full bg-[#25d366] p-4 text-white shadow-2xl shadow-[#25d366]/30 transition hover:bg-[#20b858]"
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
     >
       <MessageCircle className="h-7 w-7" />
-      <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1.5 rounded-lg text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg pointer-events-none">
-        Talk to Chamakala Travels
+      <span className="absolute right-full mr-4 hidden rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-brand-dark shadow-lg group-hover:inline-flex">
+        Chat with us
       </span>
     </motion.a>
   );
