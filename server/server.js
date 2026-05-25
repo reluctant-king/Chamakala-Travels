@@ -5,6 +5,10 @@ import dotenv from 'dotenv';
 import fareRoutes from './routes/fares.js';
 import inquiryRoutes from './routes/inquiries.js';
 import authRoutes from './routes/auth.js';
+import bookingRoutes from './routes/bookings.js';
+import packageRoutes from './routes/packages.js';
+import adminRoutes from './routes/admin.js';
+import settingsRoutes from './routes/settings.js';
 
 dotenv.config();
 
@@ -19,6 +23,10 @@ app.use(express.json());
 app.use('/api/fares', fareRoutes);
 app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/bookings', bookingRoutes);
+app.use('/api/packages', packageRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/settings', settingsRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

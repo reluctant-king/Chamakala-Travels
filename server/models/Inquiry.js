@@ -9,6 +9,9 @@ const inquirySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  email: {
+    type: String
+  },
   destination: {
     type: String,
     required: true
@@ -28,6 +31,15 @@ const inquirySchema = new mongoose.Schema({
   },
   notes: {
     type: String
+  },
+  source: {
+    type: String,
+    enum: ['Contact Form', 'WhatsApp', 'Callback', 'Other'],
+    default: 'Contact Form'
+  },
+  contacted: {
+    type: Boolean,
+    default: false
   },
   status: {
     type: String,

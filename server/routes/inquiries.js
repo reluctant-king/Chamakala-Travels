@@ -7,7 +7,25 @@ const router = express.Router();
 // Get all inquiries (for admin) - Protected
 router.get('/', protect, async (req, res) => {
   try {
-    const inquiries = await Inquiry.find().sort({ createdAt: -1 });
+    const search = req.query.search || '';
+    const source = req.query.source;
+    const status = req.query.status;
+
+    const filter = {};
+    if (search) {
+      const regex = new RegExp(search, 'i');
+      filter.$or = [
+        { name: regex },
+        { phone: regex },
+        { email: regex },
+        { destination: regex },
+        { notes: regex }
+      ];
+    }
+    if (source) filter.source = source;
+    if (status) filter.status = status;
+
+    const inquiries = await Inquiry.find(filter).sort({ createdAt: -1 });
     res.json(inquiries);
   } catch (err) {
     res.status(500).json({ message: err.message });

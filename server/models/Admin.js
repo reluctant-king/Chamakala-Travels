@@ -11,6 +11,14 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true
   }
+  ,
+  // For password reset tokens
+  resetPasswordToken: {
+    type: String
+  },
+  resetPasswordExpires: {
+    type: Date
+  }
 });
 
 // Hash password before saving
