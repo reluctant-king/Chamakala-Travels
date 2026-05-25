@@ -63,7 +63,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-brand-dark/50 border border-white/10 text-white rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:border-brand-gold transition-colors"
-                placeholder="admin@chamakala.com"
+                placeholder="Enter Email Address"
               />
             </div>
           </div>
@@ -78,7 +78,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full bg-brand-dark/50 border border-white/10 text-white rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:border-brand-gold transition-colors"
-                placeholder="••••••••"
+                placeholder="Enter Password"
               />
             </div>
           </div>

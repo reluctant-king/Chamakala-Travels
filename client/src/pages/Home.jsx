@@ -200,7 +200,7 @@ const Home = () => {
             <div className="rounded-[2rem] overflow-hidden border border-white/10 bg-[#061022] shadow-2xl shadow-black/25">
               <div className="relative h-[420px]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.5!2d76.5!3d9.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMzYnMDAuMCJOIDc2wrAzMCcwMC4wIkU!5e0!3m2!1sen!2sin!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.170725269924!2d76.50413767450522!3d9.680042478459502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b07d5eac39f6c9b%3A0x501e196773d8f87d!2sChamakkala%20Travels!5e1!3m2!1sen!2sus!4v1779684685132!5m2!1sen!2sus"
                   title="Chamakkala Travels Office Location"
                   className="absolute inset-0 w-full h-full border-0 filter grayscale contrast-125 transition duration-500 hover:grayscale-0"
                   allowFullScreen
