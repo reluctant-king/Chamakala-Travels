@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Plane, Train, Bus, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../config';
 
 const typeConfig = {
   all: { label: 'All', color: 'bg-white/10 text-white border-white/10' },
@@ -32,7 +33,7 @@ const FareCards = ({ limit }) => {
   useEffect(() => {
     const fetchFares = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/fares');
+        const res = await fetch(`${API_URL}/api/fares`);
         const data = await res.json();
         setFares(limit ? data.slice(0, limit) : data);
       } catch (err) {

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
+import { API_URL } from '../config';
 
 const InquiryForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -56,7 +57,7 @@ const InquiryForm = () => {
     setStatus('Sending inquiry...');
 
     try {
-      const response = await fetch('http://localhost:5000/api/inquiries', {
+      const response = await fetch(`${API_URL}/api/inquiries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

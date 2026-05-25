@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, LayoutDashboard, Ticket, MessageSquare, Settings, ShieldCheck, Mail, Lock, BarChart2 } from 'lucide-react';
+import { API_URL } from '../config';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('analytics');
@@ -37,7 +38,7 @@ const AdminDashboard = () => {
     setLoading(true);
     try {
       const endpoint = activeTab === 'inquiries' ? '/api/inquiries' : '/api/fares';
-      const res = await fetch(`http://localhost:5000${endpoint}`, {
+      const res = await fetch(`${API_URL}${endpoint}`, {
         headers: {
           Authorization: `Bearer ${adminInfo.token}`,
           'Content-Type': 'application/json',
@@ -73,7 +74,7 @@ const AdminDashboard = () => {
 
   const updateInquiryStatus = async (id, status) => {
     try {
-      await fetch(`http://localhost:5000/api/inquiries/${id}/status`, {
+      await fetch(`${API_URL}/api/inquiries/${id}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ const AdminDashboard = () => {
   const handleAddFare = async (e) => {
     e.preventDefault();
     try {
-      await fetch('http://localhost:5000/api/fares', {
+      await fetch(`${API_URL}/api/fares`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -120,7 +121,7 @@ const AdminDashboard = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/profile', {
+      const res = await fetch(`${API_URL}/api/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
