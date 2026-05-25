@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { ArrowRight, Globe, MapPin } from 'lucide-react';
 
 const Hero = () => {
@@ -38,12 +37,12 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
-            <Link to="/inquiry" className="inline-flex items-center justify-center gap-3 rounded-full bg-brand-gold px-8 py-4 text-sm font-semibold text-brand-dark transition hover:bg-yellow-400">
+            <a href="/#inquiry" className="inline-flex items-center justify-center gap-3 rounded-full bg-brand-gold px-8 py-4 text-sm font-semibold text-brand-dark transition hover:bg-yellow-400">
               Plan My Trip <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link to="/fares" className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10">
+            </a>
+            <a href="/#fares" className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10">
               View Live Fares
-            </Link>
+            </a>
           </motion.div>
 
           <motion.div

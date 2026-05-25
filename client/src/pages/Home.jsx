@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import FareCards from '../components/FareCards';
 import DestinationCards from '../components/DestinationCards';
