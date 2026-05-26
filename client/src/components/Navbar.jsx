@@ -37,7 +37,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center gap-1">
+          {/* <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => renderLink(link))}
             <Link
               to="/admin"
@@ -45,7 +45,7 @@ const Navbar = () => {
             >
               Admin Login
             </Link>
-          </div>
+          </div> */}
 
           <button
             onClick={() => setIsOpen(!isOpen)}
