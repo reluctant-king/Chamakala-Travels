@@ -49,7 +49,7 @@ const Footer = () => {
                 <MapPin className="h-5 w-5 text-brand-gold" />
                 <div>
                   <span className="block font-medium text-white">Address</span>
-                  <span>Neendoor, Kottayam, Kerala 686612</span>
+                  <span>Neendoor, Kottayam, Kerala 686601</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">

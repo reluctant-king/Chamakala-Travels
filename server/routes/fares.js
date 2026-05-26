@@ -33,4 +33,32 @@ router.post('/', protect, async (req, res) => {
   }
 });
 
+// Update a fare (Protected)
+router.put('/:id', protect, async (req, res) => {
+  try {
+    const fare = await Fare.findById(req.params.id);
+    if (!fare) return res.status(404).json({ message: 'Fare not found' });
+    const fields = ['type', 'from_location', 'to_location', 'price', 'travel_date', 'provider'];
+    fields.forEach((f) => {
+      if (req.body[f] !== undefined) fare[f] = req.body[f];
+    });
+    const updated = await fare.save();
+    res.json(updated);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+// Delete a fare (Protected)
+router.delete('/:id', protect, async (req, res) => {
+  try {
+    const fare = await Fare.findById(req.params.id);
+    if (!fare) return res.status(404).json({ message: 'Fare not found' });
+    await fare.deleteOne();
+    res.json({ message: 'Fare removed' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 export default router;

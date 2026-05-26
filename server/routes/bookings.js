@@ -73,7 +73,7 @@ router.delete('/:id', protect, async (req, res) => {
   try {
     const booking = await Booking.findById(req.params.id);
     if (!booking) return res.status(404).json({ message: 'Booking not found' });
-    await booking.remove();
+    await booking.deleteOne();
     res.json({ message: 'Booking removed' });
   } catch (err) {
     res.status(500).json({ message: err.message });

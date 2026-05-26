@@ -63,11 +63,13 @@ const InquiryForm = () => {
         body: JSON.stringify({
           name: formData.fullName,
           phone: formData.phone,
+          email: formData.email,
           destination: formData.destination,
           travel_type: formData.travelMode === 'package' ? 'Package' : formData.travelMode.charAt(0).toUpperCase() + formData.travelMode.slice(1),
           passenger_count: Number(formData.passengers),
           budget: formData.budget,
-          notes: formData.remarks,
+          notes: `Origin: ${formData.origin}\nRemarks: ${formData.remarks}`.trim(),
+          source: 'Contact Form',
         }),
       });
 

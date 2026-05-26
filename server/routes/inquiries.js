@@ -37,11 +37,13 @@ router.post('/', async (req, res) => {
   const inquiry = new Inquiry({
     name: req.body.name,
     phone: req.body.phone,
+    email: req.body.email,
     destination: req.body.destination,
     travel_type: req.body.travel_type,
     passenger_count: req.body.passenger_count,
     budget: req.body.budget,
-    notes: req.body.notes
+    notes: req.body.notes,
+    source: req.body.source || 'Contact Form'
   });
 
   try {
@@ -65,6 +67,18 @@ router.put('/:id/status', protect, async (req, res) => {
     }
   } catch (err) {
     res.status(400).json({ message: err.message });
+  }
+});
+
+// Delete an inquiry (Protected)
+router.delete('/:id', protect, async (req, res) => {
+  try {
+    const inquiry = await Inquiry.findById(req.params.id);
+    if (!inquiry) return res.status(404).json({ message: 'Inquiry not found' });
+    await inquiry.deleteOne();
+    res.json({ message: 'Inquiry removed' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
