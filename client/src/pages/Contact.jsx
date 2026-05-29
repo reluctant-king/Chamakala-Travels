@@ -12,7 +12,7 @@ const Contact = () => {
             <div className="mt-10 space-y-6">
               <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <p className="text-sm uppercase tracking-[0.24em] text-brand-gold">Office</p>
-                <p className="mt-3 text-gray-300">Neendoor Road - Ettumanoor , Pravattom, Kottayam, Kerala 686 612</p>
+                <p className="mt-3 text-gray-300">Neendoor Road - Ettumanoor , Pravattom, Kottayam, Kerala 686 601</p>
               </div>
               <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <p className="text-sm uppercase tracking-[0.24em] text-brand-gold">Phone</p>

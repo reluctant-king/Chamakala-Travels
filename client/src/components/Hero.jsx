@@ -21,7 +21,7 @@ const Hero = () => {
       >
         <img
           src={heroBanner}
-          alt=""
+          alt=""  
           className="w-full h-auto object-contain mix-blend-screen opacity-60"
         />
       </motion.div>
