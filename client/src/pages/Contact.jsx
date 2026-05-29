@@ -7,12 +7,12 @@ const Contact = () => {
             <p className="text-brand-gold uppercase tracking-[0.28em] text-sm font-semibold">Get in touch</p>
             <h1 className="mt-6 text-4xl font-bold text-white sm:text-5xl">Let’s plan your next trip together.</h1>
             <p className="mt-6 text-gray-300 leading-8">
-              Reach out by phone, WhatsApp, or visit our office in Kottayam. We’re ready to assist with ticket bookings, package planning, visa support and custom itineraries.
+              Reach out by phone, WhatsApp, or visit our office in Pravattom. We’re ready to assist with ticket bookings, package planning, visa support and custom itineraries.
             </p>
             <div className="mt-10 space-y-6">
               <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <p className="text-sm uppercase tracking-[0.24em] text-brand-gold">Office</p>
-                <p className="mt-3 text-gray-300">Ettumanoor – Neendoor Road, Neendoor, Kottayam, Kerala 686 612</p>
+                <p className="mt-3 text-gray-300">Neendoor Road - Ettumanoor , Pravattom, Kottayam, Kerala 686 612</p>
               </div>
               <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                 <p className="text-sm uppercase tracking-[0.24em] text-brand-gold">Phone</p>
@@ -30,7 +30,7 @@ const Contact = () => {
               <div className="mt-8 space-y-4 text-gray-300">
                 <div>
                   <p className="font-semibold text-white">Monday – Saturday</p>
-                  <p className="mt-1">9:00 AM – 7:00 PM</p>
+                  <p className="mt-1">9:30 AM – 8:00 PM</p>
                 </div>
                 <div>
                   <p className="font-semibold text-white">Sunday</p>
@@ -38,7 +38,7 @@ const Contact = () => {
                 </div>
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                   <p className="text-sm uppercase tracking-[0.24em] text-brand-gold">Email</p>
-                  <p className="mt-3 text-gray-300">support@chamakkalatravels.com</p>
+                  <p className="mt-3 text-gray-300">chamakkalatravels@gmail.com</p>
                 </div>
               </div>
             </div>
