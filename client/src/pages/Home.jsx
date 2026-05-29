@@ -177,13 +177,15 @@ const Home = () => {
             <div>
               <p className="text-brand-gold font-semibold uppercase tracking-[0.24em]">Find Us</p>
               <h2 className="mt-4 text-4xl font-bold text-white">Visit Our Office</h2>
-              <p className="mt-4 text-gray-400 leading-8 text-lg">We’re located in Pravattom on the Neendoor - Ettumanoor Road, easily accessible from Ettumanoor town. Visit us for help booking flights, trains, buses, or customized trip planning.</p>
+              <p className="mt-4 text-gray-400 leading-8 text-lg">We are located at Pravattom in Neendoor, easily accessible from Ettumanoor town. Visit us for booking flights flights, trains, buses, or customized trip planning.</p>
 
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                   <p className="text-sm uppercase tracking-[0.24em] text-brand-gold mb-3">Address</p>
-                  <p className="text-indigo-500">Pravattom</p>
-                  <p className="text-gray-300">Neendoor - Ettumanoor Road , Pravattom, Kottayam, Kerala – 686 601</p>
+                  <p className="text-gray-300">Pravattom Junction <br />
+                    Neendoor P. O<br />
+                    Kottayam, Kerala<br />
+                    India - 686601</p>
                 </div>
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                   <p className="text-sm uppercase tracking-[0.24em] text-brand-gold mb-3">Contact</p>
