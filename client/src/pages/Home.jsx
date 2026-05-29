@@ -190,7 +190,7 @@ const Home = () => {
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                   <p className="text-sm uppercase tracking-[0.24em] text-brand-gold mb-3">Contact</p>
                   <p className="text-gray-300">+91 94956 84965</p>
-                  <p className="text-gray-400 mt-3">Mon – Sat: 9:30 AM – 8:00 PM<br />Sunday: 10:00 AM – 2:00 PM</p>
+                  <p className="text-gray-400 mt-3">Mon – Sat: 9:30 AM – 8:00 PM<br />Sunday:Holiday</p>
                 </div>
               </div>
 
