@@ -79,7 +79,7 @@ const Home = () => {
   }, [location.hash]);
 
   return (
-    <div className="w-full bg-brand-dark text-white">
+    <div className="w-full mt-5 bg-brand-dark text-white">
       <section id="hero" className="scroll-mt-24">
         <Hero />
       </section>
