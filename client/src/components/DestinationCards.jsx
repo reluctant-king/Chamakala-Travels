@@ -74,7 +74,7 @@ const DestinationCards = () => {
               <div className="absolute inset-x-0 bottom-0 p-6 text-white">
                 <p className="text-xs uppercase tracking-[0.2em] text-brand-gold">{dest.country}</p>
                 <h3 className="mt-3 text-2xl font-semibold">{dest.name}</h3>
-                <p className="mt-2 text-sm text-gray-200 opacity-0 transition group-hover:opacity-100">{dest.price} · Book Now →</p>
+                <p onClick={() => window.location.href = "/inquiry"} className="mt-2 text-sm text-gray-200 opacity-0 transition group-hover:opacity-100">{dest.price} · Book Now →</p>
               </div>
             </motion.div>
           ))}
