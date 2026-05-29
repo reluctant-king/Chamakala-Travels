@@ -79,7 +79,7 @@ const Home = () => {
   }, [location.hash]);
 
   return (
-    <div className="w-full bg-brand-dark text-white">
+    <div className="w-full mt-5 bg-brand-dark text-white">
       <section id="hero" className="scroll-mt-24">
         <Hero />
       </section>
@@ -131,7 +131,7 @@ const Home = () => {
       <section id="about" className="scroll-mt-24 bg-[#081426] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <p className="text-brand-gold font-semibold uppercase tracking-[0.24em]">Why Chamakkala</p>
+            <p className="text-brand-gold font-semibold uppercase tracking-[0.24em]">Why Chamakkala ?</p>
             <h2 className="text-4xl font-bold text-white">Travel with Confidence</h2>
           </div>
 
@@ -177,17 +177,18 @@ const Home = () => {
             <div>
               <p className="text-brand-gold font-semibold uppercase tracking-[0.24em]">Find Us</p>
               <h2 className="mt-4 text-4xl font-bold text-white">Visit Our Office</h2>
-              <p className="mt-4 text-gray-400 leading-8 text-lg">We’re located on the Ettumanoor – Neendoor Road, easily accessible from Kottayam town. Visit us for help booking flights, trains, buses, or customized trip planning.</p>
+              <p className="mt-4 text-gray-400 leading-8 text-lg">We’re located in Pravattom on the Neendoor - Ettumanoor Road, easily accessible from Ettumanoor town. Visit us for help booking flights, trains, buses, or customized trip planning.</p>
 
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                   <p className="text-sm uppercase tracking-[0.24em] text-brand-gold mb-3">Address</p>
-                  <p className="text-gray-300">Ettumanoor – Neendoor Road,<br />Neendoor, Kottayam, Kerala – 686 612</p>
+                  <p className="text-indigo-500">Pravattom</p>
+                  <p className="text-gray-300">Neendoor - Ettumanoor Road , Pravattom, Kottayam, Kerala – 686 601</p>
                 </div>
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
                   <p className="text-sm uppercase tracking-[0.24em] text-brand-gold mb-3">Contact</p>
                   <p className="text-gray-300">+91 94956 84965</p>
-                  <p className="text-gray-400 mt-3">Mon – Sat: 9:00 AM – 7:00 PM<br />Sunday: 10:00 AM – 2:00 PM</p>
+                  <p className="text-gray-400 mt-3">Mon – Sat: 9:30 AM – 8:00 PM<br />Sunday: 10:00 AM – 2:00 PM</p>
                 </div>
               </div>
 

@@ -24,7 +24,7 @@ const fareSchema = new mongoose.Schema({
   },
   provider: {
     type: String,
-    default: 'Chamakala Travels'
+    default: 'Chamakkala Travels'
   },
   createdAt: {
     type: Date,

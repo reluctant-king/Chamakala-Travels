@@ -43,7 +43,7 @@ const Login = () => {
       >
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-white mb-2">Admin <span className="text-brand-gold">Login</span></h2>
-          <p className="text-gray-400 text-sm">Secure access to Chamakala Travels dashboard.</p>
+          <p className="text-gray-400 text-sm">Secure access to Chamakkala Travels dashboard.</p>
         </div>
 
         {error && (
