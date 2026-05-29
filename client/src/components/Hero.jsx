@@ -13,21 +13,30 @@ const Hero = () => {
       <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-[#f0d49a]/10 blur-3xl" />
 
       {/* Background Logo Image - Large & Faded */}
-      <motion.div
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 0.25, scale: 1 }}
-        transition={{ duration: 1.5 }}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-      >
-        <img
-          src={heroBanner}
-          alt=""  
-          className="w-full h-auto object-contain mix-blend-screen opacity-60"
-        />
-      </motion.div>
+{/* Background Logo Image - Large & Responsive */}
+<motion.div
+  initial={{ opacity: 0, scale: 1.1 }}
+  animate={{ opacity: 0.25, scale: 1 }}
+  transition={{ duration: 1.5 }}
+  className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden"
+>
+  <img
+    src={heroBanner}
+    alt=""
+    className="
+      w-[180%] sm:w-[140%] md:w-full
+      h-full
+      object-cover
+      object-center
+      mix-blend-screen
+      opacity-50
+      scale-110 sm:scale-100
+    "
+  />
+</motion.div>
 
       {/* Main Container */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-4 py-24 sm:px-6 lg:px-8">
         
         {/* Content */}
         <div className="max-w-4xl text-center space-y-8">
@@ -45,7 +54,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl leading-tight drop-shadow-2xl">
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl leading-tight drop-shadow-2xl">
               <span className="block">Your Journey</span>
 
               <span className="block italic bg-gradient-to-r from-[#f9f3eb] via-[#f0d49a] to-[#e6c07b] bg-clip-text text-transparent">
