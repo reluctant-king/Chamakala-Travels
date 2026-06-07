@@ -16,6 +16,7 @@ import Analytics from './pages/admin/Analytics';
 import Inquiries from './pages/admin/Inquiries';
 import Bookings from './pages/admin/Bookings';
 import Fares from './pages/admin/Fares';
+import PromotionalFares from './pages/admin/PromotionalFares';
 import Content from './pages/admin/Content';
 import Settings from './pages/admin/Settings';
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="inquiries" element={<Inquiries />} />
           <Route path="bookings" element={<Bookings />} />
           <Route path="fares" element={<Fares />} />
+          <Route path="promotional-fares" element={<PromotionalFares />} />
           <Route path="content" element={<Content />} />
           <Route path="settings" element={<Settings />} />
         </Route>

@@ -4,6 +4,19 @@ import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
+// Public: get promotional fares for the homepage ticker
+router.get('/public', async (req, res) => {
+  try {
+    const settings = await Settings.findOne();
+    if (!settings) {
+      return res.json([]);
+    }
+    res.json(settings.promotionalFares || []);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Retrieve site settings / content management data
 router.get('/', protect, async (req, res) => {
   try {
@@ -36,7 +49,8 @@ router.put('/', protect, async (req, res) => {
       'testimonials',
       'footer',
       'currency',
-      'apiSettings'
+      'apiSettings',
+      'promotionalFares'
     ];
 
     allowedFields.forEach((field) => {

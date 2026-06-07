@@ -10,6 +10,7 @@ import {
   Menu,
   X,
   ShieldCheck,
+  Percent,
 } from 'lucide-react';
 import { AdminContext } from './AdminContext';
 
@@ -17,8 +18,9 @@ const NAV = [
   { to: 'analytics',  label: 'Analytics',  Icon: BarChart2 },
   { to: 'inquiries',  label: 'Inquiries',  Icon: MessageSquare },
   { to: 'bookings',   label: 'Bookings',   Icon: Ticket },
-  { to: 'fares',      label: 'Fares',      Icon: Ticket },
-  { to: 'content',    label: 'Content',    Icon: Settings },
+  { to: 'fares',             label: 'Fares',             Icon: Ticket },
+  { to: 'promotional-fares', label: 'Promotional Fares', Icon: Percent },
+  { to: 'content',           label: 'Content',           Icon: Settings },
   { to: 'settings',   label: 'Settings',   Icon: ShieldCheck },
 ];
 

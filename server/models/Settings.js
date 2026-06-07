@@ -41,6 +41,16 @@ const settingsSchema = new mongoose.Schema({
     text: { type: String },
     links: [{ label: String, href: String }]
   },
+  promotionalFares: [
+    {
+      origin: { type: String },
+      destination: { type: String },
+      price: { type: Number },
+      transportType: { type: String, enum: ['flight', 'train', 'bus'], default: 'flight' },
+      isActive: { type: Boolean, default: true },
+      lastUpdated: { type: Date }
+    }
+  ],
   currency: { type: String, default: 'INR' },
   apiSettings: { type: Map, of: String },
   createdAt: { type: Date, default: Date.now }

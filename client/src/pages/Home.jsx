@@ -1,21 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import FareCards from '../components/FareCards';
 import DestinationCards from '../components/DestinationCards';
 import InquiryForm from '../components/InquiryForm';
+import { API_URL } from '../config';
 
-const TICKER_DATA = [
-  { route: 'Kochi → Dubai', price: '₹8,499', icon: '✈️' },
-  { route: 'Kochi → Singapore', price: '₹12,999', icon: '✈️' },
-  { route: 'Kottayam → Mumbai', price: '₹1,250', icon: '🚂' },
-  { route: 'Trivandrum → Riyadh', price: '₹9,750', icon: '✈️' },
-  { route: 'Kottayam → Bangalore', price: '₹650', icon: '🚌' },
-  { route: 'Kochi → Abu Dhabi', price: '₹7,899', icon: '✈️' },
-  { route: 'Ernakulam → Delhi', price: '₹2,100', icon: '🚂' },
-  { route: 'Kochi → Muscat', price: '₹6,499', icon: '✈️' },
-  { route: 'Kottayam → Chennai', price: '₹850', icon: '🚌' },
-];
+const TRANSPORT_ICONS = { flight: '✈️', train: '🚂', bus: '🚌' };
 
 const whyCards = [
   {
@@ -65,6 +57,9 @@ const testimonials = [
 
 const Home = () => {
   const location = useLocation();
+  const [promoFares, setPromoFares] = useState([]);
+  const tickerRef = useRef(null);
+  const [tickerWidth, setTickerWidth] = useState(0);
 
   useEffect(() => {
     if (location.hash) {
@@ -78,38 +73,78 @@ const Home = () => {
     }
   }, [location.hash]);
 
+  useEffect(() => {
+    const fetchPromo = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/settings/public`);
+        if (res.ok) {
+          const data = await res.json();
+          const active = (Array.isArray(data) ? data : []).filter((f) => f.isActive !== false);
+          setPromoFares(active);
+        }
+      } catch (err) {
+        console.error('Error fetching promo fares:', err);
+      }
+    };
+    fetchPromo();
+  }, []);
+
+  useEffect(() => {
+    if (tickerRef.current) {
+      setTickerWidth(tickerRef.current.scrollWidth / 2);
+    }
+  }, [promoFares]);
+
+  const tickerItems = promoFares.map((f) => ({
+    route: `${f.origin} → ${f.destination}`,
+    price: `₹${f.price?.toLocaleString()}`,
+    icon: TRANSPORT_ICONS[f.transportType] || '✈️',
+  }));
+
   return (
     <div className="w-full mt-5 bg-brand-dark text-white">
       <section id="hero" className="scroll-mt-24">
         <Hero />
       </section>
 
-      <section id="fares" className="scroll-mt-24 bg-slate-950 border-t border-white/10 py-3">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-full border border-white/10 bg-[#0a1520] px-4 py-3 text-sm uppercase tracking-[0.24em] text-brand-gold shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
-            <span className="inline-flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-brand-green animate-pulse" />
-              Live Fares
-            </span>
-            <span className="text-gray-400">Promotional routes from Kottayam, Kochi, and Trivandrum.</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#081426] py-8 overflow-hidden">
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="ticker-scroll absolute inset-0" />
-          <div className="relative flex min-h-[70px] items-center gap-6 overflow-hidden text-sm text-gray-300">
-            {TICKER_DATA.concat(TICKER_DATA).map((item, index) => (
-              <div key={`${item.route}-${index}`} className="inline-flex items-center gap-3 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-4 py-3">
-                <span>{item.icon}</span>
-                <span className="font-semibold text-white">{item.route}</span>
-                <span className="text-brand-gold">{item.price}</span>
+      {tickerItems.length > 0 && (
+        <>
+          <section id="fares" className="scroll-mt-24 bg-slate-950 border-t border-white/10 py-3">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-wrap items-center justify-between gap-4 rounded-full border border-white/10 bg-[#0a1520] px-4 py-3 text-sm uppercase tracking-[0.24em] text-brand-gold shadow-[0_0_0_1px_rgba(255,255,255,0.06)]">
+                <span className="inline-flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-brand-green animate-pulse" />
+                  Live Fares
+                </span>
+                <span className="text-gray-400">Promotional routes from Kottayam, Kochi, and Trivandrum.</span>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
+
+          <section className="bg-[#081426] py-8 overflow-hidden">
+            <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 overflow-hidden">
+              <motion.div
+                ref={tickerRef}
+                className="flex items-center gap-6 text-sm text-gray-300"
+                animate={tickerWidth ? { x: [0, -tickerWidth] } : {}}
+                transition={{
+                  duration: tickerItems.length * 4,
+                  ease: 'linear',
+                  repeat: Infinity,
+                }}
+              >
+                {[...tickerItems, ...tickerItems].map((item, index) => (
+                  <div key={`${item.route}-${index}`} className="inline-flex shrink-0 items-center gap-3 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-4 py-3">
+                    <span>{item.icon}</span>
+                    <span className="font-semibold text-white">{item.route}</span>
+                    <span className="text-brand-gold">{item.price}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+        </>
+      )}
 
       <FareCards limit={6} />
 

@@ -17,14 +17,6 @@ const getIcon = (type) => {
   return Plane;
 };
 
-const tickerItems = [
-  { route: 'Kochi → Dubai', price: '₹8,499', icon: '✈️' },
-  { route: 'Kochi → Singapore', price: '₹12,999', icon: '✈️' },
-  { route: 'Kottayam → Mumbai', price: '₹1,250', icon: '🚂' },
-  { route: 'Trivandrum → Riyadh', price: '₹9,750', icon: '✈️' },
-  { route: 'Kottayam → Bangalore', price: '₹650', icon: '🚌' },
-];
-
 const FareCards = ({ limit }) => {
   const [fares, setFares] = useState([]);
   const [filter, setFilter] = useState('all');

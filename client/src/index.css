@@ -23,10 +23,6 @@
 }
 
 @layer utilities {
-  .ticker-scroll {
-    animation: ticker 35s linear infinite;
-  }
-
   .animate-slide-up {
     animation: slide-up 0.2s ease-out;
   }
@@ -34,14 +30,5 @@
   @keyframes slide-up {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes ticker {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
   }
 }
