@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { API_URL } from '../config';
 import { Mail } from 'lucide-react';
+import { Seo } from '../components/Seo';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -28,7 +29,9 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+    <>
+      <Seo title="Forgot Password" description="Admin password reset for Chamakkala Travels dashboard." path="/forgot" />
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
       <div className="w-full max-w-md bg-white rounded-xl p-6 shadow">
         <h2 className="text-xl font-bold mb-4">Forgot Password</h2>
         <p className="text-sm text-gray-500 mb-4">Enter admin email to generate a reset token (for local testing).</p>
@@ -48,5 +51,6 @@ export default function ForgotPassword() {
         </form>
       </div>
     </div>
+    </>
   );
 }

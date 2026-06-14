@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Seo } from '../components/Seo';
 import Hero from '../components/Hero';
 import FareCards from '../components/FareCards';
 import DestinationCards from '../components/DestinationCards';
@@ -102,7 +103,13 @@ const Home = () => {
   }));
 
   return (
-    <div className="w-full mt-5 bg-brand-dark text-white">
+    <>
+      <Seo
+        title="Kerala's Premier Travel Agency"
+        description="Chamakkala Travels in Neendoor, Kottayam – live fares for flights, trains & buses, bespoke trip planning, and expert travel guidance. Book your journey today."
+        path="/"
+      />
+      <div className="w-full mt-5 bg-brand-dark text-white">
       <section id="hero" className="scroll-mt-24">
         <Hero />
       </section>
@@ -260,6 +267,7 @@ const Home = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

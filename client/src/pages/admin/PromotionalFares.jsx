@@ -97,10 +97,18 @@ const PromotionalFares = () => {
     persist(updated);
   };
 
+  const scrollToTop = () => {
+    const main = document.querySelector('main');
+    if (main) {
+      main.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   const openAdd = () => {
     setPromoForm({ ...EMPTY_PROMO });
     setEditingPromoIdx(null);
     setShowForm(true);
+    scrollToTop();
   };
 
   const openEdit = (idx) => {
@@ -114,6 +122,7 @@ const PromotionalFares = () => {
     });
     setEditingPromoIdx(idx);
     setShowForm(true);
+    scrollToTop();
   };
 
   if (loading) {

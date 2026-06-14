@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Lock, Mail } from 'lucide-react';
+import { Seo } from '../components/Seo';
 import { API_URL } from '../config';
 
 const Login = () => {
@@ -35,7 +36,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-dark px-4">
+    <>
+      <Seo title="Admin Login" description="Admin dashboard login for Chamakkala Travels management." path="/login" />
+      <div className="min-h-screen flex items-center justify-center bg-brand-dark px-4">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -98,6 +101,7 @@ const Login = () => {
         </div>
       </motion.div>
     </div>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { API_URL } from '../config';
+import { Seo } from '../components/Seo';
 
 export default function ResetPassword() {
   const { token } = useParams();
@@ -30,7 +31,9 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+    <>
+      <Seo title="Reset Password" description="Reset your admin password for Chamakkala Travels dashboard." path="/reset" />
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
       <div className="w-full max-w-md bg-white rounded-xl p-6 shadow">
         <h2 className="text-xl font-bold mb-4">Reset Password</h2>
 
@@ -46,5 +49,6 @@ export default function ResetPassword() {
         </form>
       </div>
     </div>
+    </>
   );
 }

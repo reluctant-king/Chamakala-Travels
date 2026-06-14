@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import ScrollToTop from './components/ScrollToTop';
+import { LocalBusinessJsonLd } from './components/Seo';
 import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import LatestFares from './pages/LatestFares';
@@ -22,39 +24,42 @@ import Settings from './pages/admin/Settings';
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path="fares" element={<LatestFares />} />
-          <Route path="destinations" element={<Destinations />} />
-          <Route path="inquiry" element={<Inquiry />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-        </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/forgot" element={<ForgotPassword />} />
-        <Route path="/reset/:token" element={<ResetPassword />} />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <AdminLayout />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<Navigate to="analytics" replace />} />
-          <Route path="analytics" element={<Analytics />} />
-          <Route path="inquiries" element={<Inquiries />} />
-          <Route path="bookings" element={<Bookings />} />
-          <Route path="fares" element={<Fares />} />
-          <Route path="promotional-fares" element={<PromotionalFares />} />
-          <Route path="content" element={<Content />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-      </Routes>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <LocalBusinessJsonLd />
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path="fares" element={<LatestFares />} />
+            <Route path="destinations" element={<Destinations />} />
+            <Route path="inquiry" element={<Inquiry />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+          </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/reset/:token" element={<ResetPassword />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate to="analytics" replace />} />
+            <Route path="analytics" element={<Analytics />} />
+            <Route path="inquiries" element={<Inquiries />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="fares" element={<Fares />} />
+            <Route path="promotional-fares" element={<PromotionalFares />} />
+            <Route path="content" element={<Content />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+        </Routes>
+      </Router>
+    </HelmetProvider>
   );
 }
 
