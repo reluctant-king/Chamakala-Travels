@@ -126,7 +126,32 @@ const PromotionalFares = () => {
   };
 
   if (loading) {
-    return <div className="p-6 text-center text-gray-400">Loading promotional fares…</div>;
+    return (
+      <div className="p-6 space-y-4 animate-pulse">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <div className="h-8 w-56 bg-white/10 rounded mb-2" />
+            <div className="h-4 w-96 bg-white/10 rounded" />
+          </div>
+          <div className="h-10 w-28 bg-white/10 rounded-xl" />
+        </div>
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/10">
+            <div className="flex items-center gap-4 flex-1">
+              <div className="h-8 w-8 bg-white/10 rounded-lg" />
+              <div className="flex-1">
+                <div className="h-5 w-48 bg-white/10 rounded mb-2" />
+                <div className="h-4 w-32 bg-white/10 rounded" />
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 bg-white/10 rounded-lg" />
+              <div className="h-8 w-8 bg-white/10 rounded-lg" />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   }
 
   return (

@@ -9,6 +9,7 @@ const initialFare = { type: 'Flight', from_location: '', to_location: '', price:
 const Fares = () => {
   const { adminInfo } = useAdmin();
   const [fares, setFares] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [newFare, setNewFare] = useState({ ...initialFare });
   const [editingFare, setEditingFare] = useState(null);
   const [editForm, setEditForm] = useState({ ...initialFare });
@@ -17,6 +18,7 @@ const Fares = () => {
 
   const fetchFares = async () => {
     if (!adminInfo?.token) return;
+    setLoading(true);
     try {
       const res = await fetch(`${API_URL}/api/fares`, {
         headers: { Authorization: `Bearer ${adminInfo.token}` },
@@ -27,6 +29,8 @@ const Fares = () => {
       }
     } catch (err) {
       console.error('Error fetching fares:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -114,25 +118,40 @@ const Fares = () => {
 
       <p className="text-gray-400 mb-6">Manage manual ticket fares here. Fares added here will be displayed on the homepage.</p>
       <div className="grid gap-4">
-        {fares.map((fare) => (
-          <div key={fare._id} className="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10">
-            <div>
-              <h3 className="font-semibold">{fare.from_location} &rarr; {fare.to_location}</h3>
-              <p className="text-sm text-gray-400">{fare.type} | Date: {new Date(fare.travel_date).toLocaleDateString()}</p>
+        {loading ? (
+          [1, 2, 3].map((i) => (
+            <div key={i} className="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10 animate-pulse">
+              <div className="flex-1">
+                <div className="h-5 w-48 bg-white/10 rounded mb-2" />
+                <div className="h-4 w-36 bg-white/10 rounded" />
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="h-7 w-20 bg-white/10 rounded" />
+                <div className="h-8 w-8 bg-white/10 rounded-lg" />
+                <div className="h-8 w-8 bg-white/10 rounded-lg" />
+              </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-xl font-bold text-brand-gold">₹{fare.price}</div>
-              <button onClick={() => openEditModal(fare)} className="p-2 text-blue-400 hover:bg-blue-400/10 rounded-lg transition">
-                <Pencil className="h-4 w-4" />
-              </button>
-              <button onClick={() => setDeleteConfirm({ open: true, id: fare._id })} className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition">
-                <Trash2 className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        ))}
-        {fares.length === 0 && (
+          ))
+        ) : fares.length === 0 ? (
           <div className="text-center text-gray-500 p-4">No fares added yet.</div>
+        ) : (
+          fares.map((fare) => (
+            <div key={fare._id} className="flex justify-between items-center p-4 bg-white/5 rounded-xl border border-white/10">
+              <div>
+                <h3 className="font-semibold">{fare.from_location} &rarr; {fare.to_location}</h3>
+                <p className="text-sm text-gray-400">{fare.type} | Date: {new Date(fare.travel_date).toLocaleDateString()}</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="text-xl font-bold text-brand-gold">₹{fare.price}</div>
+                <button onClick={() => openEditModal(fare)} className="p-2 text-blue-400 hover:bg-blue-400/10 rounded-lg transition">
+                  <Pencil className="h-4 w-4" />
+                </button>
+                <button onClick={() => setDeleteConfirm({ open: true, id: fare._id })} className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition">
+                  <Trash2 className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          ))
         )}
       </div>
 

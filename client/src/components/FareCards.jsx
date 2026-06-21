@@ -72,7 +72,27 @@ const FareCards = ({ limit }) => {
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {loading ? (
-            <div className="col-span-full rounded-3xl border border-white/10 bg-white/5 p-10 text-center text-gray-300">Loading fares...</div>
+            <>
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="rounded-[2rem] border border-white/10 bg-white/5 p-6 animate-pulse">
+                  <div className="flex items-center justify-between gap-3 mb-6">
+                    <div className="h-12 w-12 rounded-3xl bg-white/10" />
+                    <div className="h-6 w-20 rounded-full bg-white/10" />
+                  </div>
+                  <div className="mb-4">
+                    <div className="h-3 w-24 bg-white/10 rounded mb-3" />
+                    <div className="h-6 w-48 bg-white/10 rounded" />
+                  </div>
+                  <div className="flex items-end justify-between gap-4 pt-4 border-t border-white/10">
+                    <div>
+                      <div className="h-8 w-28 bg-white/10 rounded mb-1" />
+                      <div className="h-3 w-16 bg-white/10 rounded" />
+                    </div>
+                    <div className="h-3 w-20 bg-white/10 rounded" />
+                  </div>
+                </div>
+              ))}
+            </>
           ) : filteredFares.length === 0 ? (
             <div className="col-span-full rounded-3xl border border-white/10 bg-white/5 p-10 text-center text-gray-300">No fares available for this category.</div>
           ) : (

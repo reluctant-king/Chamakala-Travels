@@ -59,6 +59,7 @@ const testimonials = [
 const Home = () => {
   const location = useLocation();
   const [promoFares, setPromoFares] = useState([]);
+  const [promoLoading, setPromoLoading] = useState(true);
   const tickerRef = useRef(null);
   const [tickerWidth, setTickerWidth] = useState(0);
 
@@ -85,6 +86,8 @@ const Home = () => {
         }
       } catch (err) {
         console.error('Error fetching promo fares:', err);
+      } finally {
+        setPromoLoading(false);
       }
     };
     fetchPromo();
@@ -114,7 +117,7 @@ const Home = () => {
         <Hero />
       </section>
 
-      {tickerItems.length > 0 && (
+      {(promoLoading || tickerItems.length > 0) && (
         <>
           <section id="fares" className="scroll-mt-24 bg-slate-950 border-t border-white/10 py-3">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -130,24 +133,36 @@ const Home = () => {
 
           <section className="bg-[#081426] py-8 overflow-hidden">
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 overflow-hidden">
-              <motion.div
-                ref={tickerRef}
-                className="flex items-center gap-6 text-sm text-gray-300"
-                animate={tickerWidth ? { x: [0, -tickerWidth] } : {}}
-                transition={{
-                  duration: tickerItems.length * 4,
-                  ease: 'linear',
-                  repeat: Infinity,
-                }}
-              >
-                {[...tickerItems, ...tickerItems].map((item, index) => (
-                  <div key={`${item.route}-${index}`} className="inline-flex shrink-0 items-center gap-3 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-4 py-3">
-                    <span>{item.icon}</span>
-                    <span className="font-semibold text-white">{item.route}</span>
-                    <span className="text-brand-gold">{item.price}</span>
-                  </div>
-                ))}
-              </motion.div>
+              {promoLoading ? (
+                <div className="flex items-center gap-6 animate-pulse">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="inline-flex shrink-0 items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-3">
+                      <div className="h-5 w-5 bg-white/10 rounded" />
+                      <div className="h-4 w-40 bg-white/10 rounded" />
+                      <div className="h-4 w-16 bg-white/10 rounded" />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <motion.div
+                  ref={tickerRef}
+                  className="flex items-center gap-6 text-sm text-gray-300"
+                  animate={tickerWidth ? { x: [0, -tickerWidth] } : {}}
+                  transition={{
+                    duration: tickerItems.length * 4,
+                    ease: 'linear',
+                    repeat: Infinity,
+                  }}
+                >
+                  {[...tickerItems, ...tickerItems].map((item, index) => (
+                    <div key={`${item.route}-${index}`} className="inline-flex shrink-0 items-center gap-3 whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-4 py-3">
+                      <span>{item.icon}</span>
+                      <span className="font-semibold text-white">{item.route}</span>
+                      <span className="text-brand-gold">{item.price}</span>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
             </div>
           </section>
         </>
